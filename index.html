@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On-Premises to Azure Migration: A Complete Guide & Best Practices</title>
+    <meta name="description" content="A comprehensive guide to planning, executing, and optimizing an on-premises to Microsoft Azure cloud migration, including best practices and strategies.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in-up">On-Premises to Azure Migration</h1>
+            <p class="subtitle fade-in-up delay-1">The definitive guide and best practices for a seamless journey to the cloud.</p>
+            <a href="#article" class="btn fade-in-up delay-2">Start the Journey</a>
+        </div>
+        <div class="glass-overlay"></div>
+    </header>
+
+    <main id="article" class="container">
+        <section class="card slide-in">
+            <h2>1. The Vision: Why Microsoft Azure?</h2>
+            <p>Migrating from on-premises infrastructure to Microsoft Azure provides unparalleled scalability, agility, and robust security. It shifts capital expenditure (CapEx) to operational expenditure (OpEx), allowing organizations to innovate faster and optimize costs globally.</p>
+        </section>
+
+        <section class="card image-section slide-in">
+            <div class="image-wrapper glassmorphism">
+                <img src="azure-migration.jpeg" alt="Azure Migration Architecture and Planning">
+                <div class="image-caption">High-Level Migration Architecture & Flow</div>
+            </div>
+        </section>
+
+        <section class="card slide-in">
+            <h2>2. Assessment & Planning</h2>
+            <p>A successful migration starts with a robust plan. Use the <strong>Azure Cloud Adoption Framework (CAF)</strong> to align business, people, and technology strategies.</p>
+            <ul class="feature-list">
+                <li><strong>Discovery:</strong> Inventory all physical and virtual servers using <em>Azure Migrate</em>.</li>
+                <li><strong>Readiness Assessment:</strong> Identify application dependencies and compatibility.</li>
+                <li><strong>TCO Analysis:</strong> Calculate the Total Cost of Ownership (TCO) for the cloud footprint.</li>
+            </ul>
+        </section>
+
+        <section class="card dark-card slide-in">
+            <h2>3. The 5 R's of Migration Strategy</h2>
+            <div class="grid-layout">
+                <div class="grid-item hover-scale">
+                    <h3>Rehost (Lift & Shift)</h3>
+                    <p>Move VMs exactly as they are without modifying the application code. Fast and reliable.</p>
+                </div>
+                <div class="grid-item hover-scale">
+                    <h3>Refactor (Repackage)</h3>
+                    <p>Slight modifications to leverage PaaS (e.g., Azure SQL Database, App Service).</p>
+                </div>
+                <div class="grid-item hover-scale">
+                    <h3>Rearchitect</h3>
+                    <p>Modify and extend application code base to optimize for cloud scale.</p>
+                </div>
+                <div class="grid-item hover-scale">
+                    <h3>Rebuild</h3>
+                    <p>Rewrite the application from scratch using cloud-native technologies (Containers, Microservices).</p>
+                </div>
+                <div class="grid-item hover-scale" style="grid-column: 1 / -1; text-align: center;">
+                    <h3>Replace</h3>
+                    <p>Move to a SaaS solution (e.g., Office 365, Dynamics 365) and retire legacy apps.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card slide-in">
+            <h2>4. Execution & The Landing Zone</h2>
+            <p>Before moving any workloads, establish an <strong>Azure Landing Zone</strong>. This foundational environment accounts for scale, security, governance, networking, and identity.</p>
+            <p>Use <strong>Azure Migrate</strong> to replicate on-premises machines to Azure seamlessly. Test the migration in an isolated VNet before the final cutover.</p>
+        </section>
+
+        <section class="card highlight-card slide-in">
+            <h2>5. Post-Migration Best Practices</h2>
+            <div class="feature-list">
+                <p><strong>Security:</strong> Enable Microsoft Defender for Cloud and implement Zero Trust principles.</p>
+                <p><strong>Cost Management:</strong> Use Azure Cost Management + Billing, set budgets, and purchase Azure Reserved Instances.</p>
+                <p><strong>Governance:</strong> Enforce compliance with Azure Policy and manage access with Role-Based Access Control (RBAC).</p>
+                <p><strong>Optimization:</strong> Continuously monitor application performance with Azure Monitor and Application Insights.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Cloud Migration Journey. Architected with passion.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
