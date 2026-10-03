@@ -169,8 +169,11 @@ h1 { font-size: 4rem; font-weight: 800; background: linear-gradient(135deg, #38b
 .accordion-header.active + .accordion-content { max-height: 200px; padding-bottom: 1.5rem; }
 
 /* Interactive Image */
-.interactive-img { transition: transform 0.5s ease; cursor: crosshair; }
+.interactive-img { transition: transform 0.5s ease; cursor: crosshair; position: relative; overflow: hidden; border-radius: 16px; }
 .interactive-img:hover { transform: scale(1.02); }
+.interactive-img img { width: 100%; max-width: 100%; height: auto; display: block; border-radius: 16px; }
+.image-caption { text-align: center; margin-top: 1rem; color: var(--text-secondary); font-style: italic; font-size: 0.95rem; }
+.image-wrapper { padding: 1rem; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--glass-border); }
 
 /* Utilities */
 .feature-list { list-style: none; margin-top: 1.5rem; }
