@@ -6,7 +6,6 @@
     <title>On-Premises to Azure Migration: The End-to-End Guide</title>
     <meta name="description" content="A complete, end-to-end guide for migrating from on-premises to Microsoft Azure. Covers everything from discovery and HLD/LLD design to execution and decommissioning.">
     
-    <!-- Open Graph / Social Sharing Meta Tags -->
     <meta property="og:title" content="On-Premises to Azure Migration: The End-to-End Guide">
     <meta property="og:description" content="Master the cloud migration journey. Explore architecture (HLD/LLD), the 5 Rs strategy, execution, and post-migration decommissioning.">
     <meta property="og:image" content="https://shakeer7.github.io/azure-migration-blog/azure-migration.jpeg">
@@ -18,6 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Reading Progress Bar -->
+    <div id="progress-bar"></div>
+
     <!-- Theme Toggle -->
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
         <span class="icon">☀️</span>
@@ -39,13 +41,14 @@
                 <h4>Table of Contents</h4>
                 <ul>
                     <li><a href="#vision">1. The Vision</a></li>
-                    <li><a href="#discovery">2. Discovery & Assessment</a></li>
-                    <li><a href="#hld-lld">3. Architecture (HLD & LLD)</a></li>
-                    <li><a href="#landing-zone">4. Landing Zone Setup</a></li>
-                    <li><a href="#strategy">5. The 5 R's Strategy</a></li>
-                    <li><a href="#execution">6. Execution & Cutover</a></li>
+                    <li><a href="#impact">Migration Impact</a></li>
+                    <li><a href="#discovery">2. Discovery</a></li>
+                    <li><a href="#hld-lld">3. Architecture</a></li>
+                    <li><a href="#landing-zone">4. Landing Zone</a></li>
+                    <li><a href="#strategy">5. The 5 R's</a></li>
+                    <li><a href="#execution">6. Execution</a></li>
                     <li><a href="#optimization">7. Optimization</a></li>
-                    <li><a href="#decommission">8. Decommissioning</a></li>
+                    <li><a href="#decommission">8. Decommission</a></li>
                     <li><a href="#discussion">Discussion</a></li>
                 </ul>
             </nav>
@@ -54,13 +57,36 @@
         <main id="article" class="container">
             <section id="vision" class="card slide-in">
                 <h2>1. The Vision: Why Microsoft Azure?</h2>
-                <p>Migrating from on-premises infrastructure to Microsoft Azure provides unparalleled scalability, agility, and robust security. It shifts capital expenditure (CapEx) to operational expenditure (OpEx), allowing organizations to innovate faster, optimize costs globally, and leverage advanced AI/ML services natively.</p>
+                <p>Migrating from on-premises infrastructure to Microsoft Azure provides unparalleled scalability, agility, and robust security. It shifts <span class="tooltip" data-tooltip="Capital Expenditure (Hardware Costs)">CapEx</span> to <span class="tooltip" data-tooltip="Operational Expenditure (Pay-as-you-go)">OpEx</span>, allowing organizations to innovate faster, optimize costs globally, and leverage advanced AI/ML services natively.</p>
             </section>
 
             <section class="card image-section slide-in">
-                <div class="image-wrapper glassmorphism">
+                <div class="image-wrapper glassmorphism interactive-img">
                     <img src="azure-migration.jpeg" alt="Azure Migration Architecture and Planning">
                     <div class="image-caption">High-Level Migration Architecture & Flow</div>
+                </div>
+            </section>
+
+            <!-- Animated Counters Section -->
+            <section id="impact" class="card highlight-card slide-in">
+                <h2>Expected Migration Impact</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-number" data-target="99">0</span><span class="stat-suffix">%</span>
+                        <p>High Availability</p>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number" data-target="40">0</span><span class="stat-suffix">%</span>
+                        <p>TCO Reduction</p>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number" data-target="5">0</span>
+                        <p>Migration Phases</p>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+                        <p>Scalability</p>
+                    </div>
                 </div>
             </section>
 
@@ -68,115 +94,131 @@
                 <h2>2. Phase 1: Discovery & Assessment (From Scratch)</h2>
                 <p>Before moving a single byte, you must understand your current estate. This phase minimizes risk and ensures no critical dependencies are broken.</p>
                 <ul class="feature-list">
-                    <li><strong>Stakeholder Alignment:</strong> Define business goals, RTO/RPO requirements, and compliance needs (e.g., GDPR, HIPAA).</li>
-                    <li><strong>Inventory Discovery:</strong> Deploy the <em>Azure Migrate Appliance</em> or use tools like <em>Movere</em> to discover all physical/virtual servers, databases, and web apps.</li>
-                    <li><strong>Dependency Mapping:</strong> Map communications between servers to group applications correctly into "migration waves."</li>
-                    <li><strong>TCO & Readiness Analysis:</strong> Generate Azure Migrate assessment reports to calculate the estimated Total Cost of Ownership (TCO) and check if the workloads are "Cloud Ready."</li>
+                    <li><strong>Stakeholder Alignment:</strong> Define business goals, RTO/RPO requirements, and compliance needs.</li>
+                    <li><strong>Inventory Discovery:</strong> Deploy the <em>Azure Migrate Appliance</em> to discover all physical/virtual servers.</li>
+                    <li><strong>Dependency Mapping:</strong> Map communications between servers to group applications into "migration waves."</li>
                 </ul>
             </section>
 
             <section id="hld-lld" class="card dark-card slide-in">
                 <h2>3. Phase 2: Design (HLD & LLD)</h2>
-                <p>Translating business requirements into technical blueprints is critical. This is done through High-Level and Low-Level Designs.</p>
+                <p>Translating business requirements into technical blueprints is critical. Hover over the designs below!</p>
                 
                 <div class="grid-layout">
-                    <div class="grid-item hover-scale">
-                        <h3>High-Level Design (HLD)</h3>
-                        <p>The 10,000-foot view. This document focuses on the overall architecture and strategy.</p>
-                        <ul>
-                            <li><strong>Cloud Adoption Framework (CAF):</strong> Aligning the architecture to Microsoft's best practices.</li>
-                            <li><strong>Hub-and-Spoke Topology:</strong> Defining how VNets will peer and route traffic.</li>
-                            <li><strong>Identity & Access:</strong> Azure AD (Entra ID) integration, hybrid identity (Azure AD Connect).</li>
-                            <li><strong>Disaster Recovery:</strong> Multi-region strategy and ExpressRoute/Site-to-Site VPN connectivity.</li>
-                        </ul>
+                    <div class="grid-item tilt-card">
+                        <div class="tilt-content">
+                            <h3>High-Level Design (HLD)</h3>
+                            <p>The 10,000-foot view focusing on overall architecture.</p>
+                            <ul>
+                                <li>Cloud Adoption Framework (CAF)</li>
+                                <li>Hub-and-Spoke Topology</li>
+                                <li>Disaster Recovery Strategy</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="grid-item hover-scale">
-                        <h3>Low-Level Design (LLD)</h3>
-                        <p>The granular, "how-to-build-it" specification for engineers.</p>
-                        <ul>
-                            <li><strong>IP Subnetting:</strong> Exact CIDR blocks for every VNet and subnet.</li>
-                            <li><strong>Naming Conventions:</strong> Standardized naming (e.g., <code>vnet-prod-eastus-001</code>).</li>
-                            <li><strong>RBAC Roles:</strong> Exact custom roles and group assignments.</li>
-                            <li><strong>NSG/Firewall Rules:</strong> Explicit port and protocol definitions for traffic flow.</li>
-                            <li><strong>Storage SKUs:</strong> Specific Managed Disk types (Premium SSD vs. Standard HDD).</li>
-                        </ul>
+                    <div class="grid-item tilt-card">
+                        <div class="tilt-content">
+                            <h3>Low-Level Design (LLD)</h3>
+                            <p>The granular specification for engineers.</p>
+                            <ul>
+                                <li>IP Subnetting & CIDR</li>
+                                <li>Naming Conventions</li>
+                                <li>Explicit NSG/Firewall Rules</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="landing-zone" class="card highlight-card slide-in">
+            <section id="landing-zone" class="card slide-in">
                 <h2>4. Phase 3: Azure Landing Zone Setup</h2>
                 <p>An Azure Landing Zone is the foundational environment that hosts your workloads. You must build this *before* migrating applications.</p>
-                <div class="feature-list">
-                    <p><strong>Networking:</strong> Deploy the Hub VNet (with Azure Firewall and VPN Gateway) and Spoke VNets.</p>
-                    <p><strong>Identity & Security:</strong> Setup Microsoft Entra ID, configure MFA, and deploy Microsoft Defender for Cloud.</p>
-                    <p><strong>Governance:</strong> Apply Azure Policies (e.g., restricting resource creation to specific regions) and configure Management Groups.</p>
-                    <p><strong>Observability:</strong> Deploy Log Analytics Workspaces and configure Azure Monitor.</p>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">Networking & Connectivity <span class="chevron">▼</span></button>
+                        <div class="accordion-content">
+                            <p>Deploy the Hub VNet (with Azure Firewall and VPN Gateway) and Spoke VNets via VNet Peering.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">Identity & Security <span class="chevron">▼</span></button>
+                        <div class="accordion-content">
+                            <p>Setup Microsoft Entra ID, configure MFA, and deploy Microsoft Defender for Cloud for Zero Trust.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">Governance & Observability <span class="chevron">▼</span></button>
+                        <div class="accordion-content">
+                            <p>Apply Azure Policies to restrict regions and deploy Log Analytics Workspaces for Azure Monitor.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <section id="strategy" class="card dark-card slide-in">
                 <h2>5. Phase 4: The 5 R's of Migration Strategy</h2>
                 <div class="grid-layout">
-                    <div class="grid-item hover-scale">
-                        <h3>Rehost (Lift & Shift)</h3>
-                        <p>Use Azure Migrate to replicate VMs exactly as they are (IaaS). Fast and reliable.</p>
+                    <div class="grid-item tilt-card">
+                        <div class="tilt-content">
+                            <h3>Rehost (Lift & Shift)</h3>
+                            <p>Use Azure Migrate to replicate VMs exactly as they are (IaaS). Fast and reliable.</p>
+                        </div>
                     </div>
-                    <div class="grid-item hover-scale">
-                        <h3>Refactor (Repackage)</h3>
-                        <p>Slight modifications to leverage PaaS (e.g., migrating local SQL to Azure SQL Managed Instance).</p>
+                    <div class="grid-item tilt-card">
+                        <div class="tilt-content">
+                            <h3>Refactor</h3>
+                            <p>Slight modifications to leverage PaaS (e.g., local SQL to Azure SQL Managed Instance).</p>
+                        </div>
                     </div>
-                    <div class="grid-item hover-scale">
-                        <h3>Rearchitect</h3>
-                        <p>Modify and extend application code base to optimize for cloud scale and resilience.</p>
+                    <div class="grid-item tilt-card">
+                        <div class="tilt-content">
+                            <h3>Rearchitect</h3>
+                            <p>Modify and extend application code base to optimize for cloud scale.</p>
+                        </div>
                     </div>
-                    <div class="grid-item hover-scale">
-                        <h3>Rebuild</h3>
-                        <p>Rewrite the app using cloud-native technologies (AKS, Azure Functions, Microservices).</p>
+                    <div class="grid-item tilt-card">
+                        <div class="tilt-content">
+                            <h3>Rebuild</h3>
+                            <p>Rewrite the app using cloud-native technologies (AKS, Azure Functions).</p>
+                        </div>
                     </div>
-                    <div class="grid-item hover-scale" style="grid-column: 1 / -1; text-align: center;">
-                        <h3>Replace</h3>
-                        <p>Retire the custom app and move to a SaaS solution (e.g., Office 365, Salesforce).</p>
+                    <div class="grid-item tilt-card" style="grid-column: 1 / -1; text-align: center;">
+                        <div class="tilt-content">
+                            <h3>Replace</h3>
+                            <p>Retire the custom app and move to a SaaS solution (e.g., Office 365).</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="execution" class="card slide-in">
                 <h2>6. Phase 5: Execution, Testing & Cutover</h2>
-                <p>This is where the actual migration happens, executed in planned "waves" (e.g., Dev/Test first, then Prod).</p>
-                <ul class="feature-list">
-                    <li><strong>Replication:</strong> Start initial data sync using Azure Migrate or Azure Site Recovery (ASR). This runs in the background without affecting on-prem users.</li>
-                    <li><strong>Test Migration:</strong> Perform a failover test into an isolated VNet. Validate application functionality, database connectivity, and performance.</li>
-                    <li><strong>Final Cutover:</strong> Schedule a maintenance window. Perform a final delta sync, shut down on-prem servers, update DNS records to point to Azure IPs, and turn on the Azure VMs.</li>
+                <ul class="feature-list interactive-list">
+                    <li><strong>Replication:</strong> Start initial data sync using Azure Site Recovery (ASR). Runs in background without impact.</li>
+                    <li><strong>Test Migration:</strong> Perform failover test in an isolated VNet to validate app functionality.</li>
+                    <li><strong>Final Cutover:</strong> Final delta sync, shutdown on-prem, update DNS, and power on Azure VMs.</li>
                 </ul>
             </section>
 
             <section id="optimization" class="card slide-in">
-                <h2>7. Phase 6: Post-Migration Optimization & Governance</h2>
-                <p>Migration is not the end. The cloud requires continuous tuning.</p>
-                <div class="feature-list">
-                    <p><strong>Cost Management:</strong> Review Azure Advisor recommendations. Downsize over-provisioned VMs and purchase Azure Reserved Instances or Savings Plans for steady-state workloads.</p>
-                    <p><strong>Security Posture:</strong> Review Secure Score in Microsoft Defender and remediate vulnerabilities.</p>
-                    <p><strong>Backup & DR:</strong> Ensure Azure Backup policies are actively protecting VMs and databases. Test disaster recovery plans across Azure regions.</p>
-                </div>
+                <h2>7. Phase 6: Post-Migration Optimization</h2>
+                <p>Migration is not the end. Continuously review Azure Advisor recommendations to downsize over-provisioned VMs and secure workloads.</p>
             </section>
 
             <section id="decommission" class="card highlight-card slide-in">
                 <h2>8. Phase 7: On-Premises Decommissioning</h2>
-                <p>Once workloads are stable in Azure and the rollback window has expired, it is time to cleanly shut down the legacy footprint to realize CapEx savings.</p>
-                <ul class="feature-list">
-                    <li><strong>Cooling Off Period:</strong> Leave on-prem servers powered off (but not deleted) for 2-4 weeks to ensure no hidden dependencies surface.</li>
-                    <li><strong>Data Wiping:</strong> Securely wipe all hard drives (DoD standard) to ensure no data leakage.</li>
-                    <li><strong>Asset Disposal:</strong> Work with certified e-waste vendors to recycle or sell physical hardware, SANs, and switches.</li>
-                    <li><strong>Contract Termination:</strong> Cancel datacenter leases, ISP contracts, and legacy software licenses (e.g., VMware, physical firewall licenses).</li>
-                </ul>
+                <p>Cleanly shut down the legacy footprint to realize CapEx savings.</p>
+                <div class="tags-container">
+                    <span class="tag">Cooling Off Period (4 wks)</span>
+                    <span class="tag">DoD Data Wiping</span>
+                    <span class="tag">E-Waste Disposal</span>
+                    <span class="tag">Terminate Contracts</span>
+                </div>
             </section>
 
             <section id="discussion" class="card slide-in">
                 <h2>Join the Discussion</h2>
-                <p>Share your migration stories, ask questions, or provide feedback below!</p>
                 <div id="comments-section">
-                    <!-- Giscus Script -->
                     <script src="https://giscus.app/client.js"
                             data-repo="shakeer7/azure-migration-blog"
                             data-repo-id="R_kgDOMm0Npw" 
@@ -200,6 +242,9 @@
     <footer>
         <p>&copy; 2026 Cloud Migration Journey. Architected with passion.</p>
     </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" aria-label="Back to top">↑</button>
 
     <script src="script.js"></script>
 </body>
